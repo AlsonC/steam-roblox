@@ -9,6 +9,10 @@ roblox_path = "./data/total_roblox_experiences.xlsx"
 steam_charts_path = "./data/total_steam_charts.xlsx"
 total_steam_charts = pd.read_excel(steam_charts_path, sheet_name=0)
 steam_data = pd.read_excel(steam_path, sheet_name=0)
+# Ensure the 'Indie' column is displayed as True/False
+if 'Indie' in steam_data.columns:
+    steam_data['Indie'] = steam_data['Indie'].astype(bool)
+
 steam_sheet_names = pd.ExcelFile(steam_path).sheet_names
 
 steam_data.rename(columns={'Indie Budget Dev': 'Indie Budget Dev (Found Online)'}, inplace=True)
